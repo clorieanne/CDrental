@@ -5,39 +5,18 @@ create table cd
 
 );
 
-create or replace
- function addcd(p_cd_id int, p_cd_name text)
-
-$$
-
-declare
-		v_cd_id int;
-		v_cd_name text;
-begin
-		select into v_cd_id cd_id from cd
-			where cd_id = p_cd_id
-
-
-		if v_cd_id isnull then
-			insert into cd(cd_id, cd_name) values (p_cd_id, p_cd_name)
-		else
-			update cd
-			set cd_id = p_cd_id,
-				cd_name = p_cd_name
-			where cd_id = v_cd_id;
-		end if;
-
-end;
-
-$$
-language 'plpgsql';
+INSERT INTO cd(cd_id,cd_name) values (1,'Classical Musi');
+INSERT INTO cd(cd_id,cd_name) values (2,'Pop Music');
+INSERT INTO cd(cd_id,cd_name) values (3, 'Rock Music');
+INSERT INTO cd(cd_id,cd_name) values (4, 'Balad Songs');
+INSERT INTO cd(cd_id,cd_name) values (5, 'Instrumental Music');
 ----------------------------------------------------------------------------
 create or replace
- getcd_name (in int, out text)
- returns text
+ function getcd_name (in int, out text)
+ returns text as
 
  $$
-  select cd_name from cd_name
+  select cd_name from cd
   where cd_id = $1;
  $$
   language 'sql';

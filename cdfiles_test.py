@@ -20,9 +20,6 @@ class TestCD(unittest.TestCase):
     self.assertEqual(customer_files.customer_id ,"001")
     self.assertEqual(customer_files.customer_name, "jen")
 
-class 
-  
-
 
 if __name__ == '__main__':
   unittest.main()
